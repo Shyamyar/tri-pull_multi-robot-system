@@ -1,0 +1,47 @@
+[System]
+Name='Multirobot'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='rho_DT1'
+Range=[-1 1]
+NumMFs=3
+MF1='Negative':'trapmf',[-1 -1 -0.4 0]
+MF2='Zero':'trimf',[-0.4 0 0.6]
+MF3='Positive':'trapmf',[0 0.6 1 1]
+
+[Input2]
+Name='phi_DT1'
+Range=[-1.5707963267949 1.5707963267949]
+NumMFs=3
+MF1='Negative':'trapmf',[-1.5707963267949 -1.5707963267949 -0.523598775598299 0]
+MF2='Zero':'trimf',[-0.523598775598299 0 0.523598775598299]
+MF3='Positive':'trapmf',[0 0.523598775598299 1.5707963267949 1.5707963267949]
+
+[Output1]
+Name='del_p1'
+Range=[-0.01 0.01]
+NumMFs=3
+MF1='Negative':'trapmf',[-0.01 -0.01 -0.005 0]
+MF2='Zero':'trimf',[-0.005 0 0.005]
+MF3='Positive':'trapmf',[0 0.005 0.01 0.01]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 1 (1) : 1
+1 3, 2 (1) : 1
+2 1, 1 (1) : 1
+2 2, 2 (1) : 1
+2 3, 2 (1) : 1
+3 1, 2 (1) : 1
+3 2, 3 (1) : 1
+3 3, 3 (1) : 1
